@@ -1,19 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+import { Footer, RatesList } from './components'
+import api from './api'
 
 function App() {
+  const [ratesMap, setRatesMap] = useState(null)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setLoading(true)
+    setError(null)
+
+    fetch(api.EUR)
+      .then(res => res.json())
+      .then(json => {
+        setRatesMap(json.eur)
+      })
+      .catch(err => {
+        console.error(err)
+        setError('Failed to fetch rates')
+      })
+      .finally(() => setLoading(false))
+  }, [])
+
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="container mx-auto p-4 space-y-4">
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde
+          officia, deserunt perferendis sapiente nisi qui suscipit natus
+          explicabo, minima assumenda, tempore est consequatur ullam eaque.
+          Perferendis fugit sint numquam illo?
+        </p>
       </div>
-      <h1>Vite + React</h1>
+      {loading && (
+        <div className="container mx-auto">
+          <progress className="progress w-56"></progress>
+        </div>
+      )}
+
+      {error && <p className="text-red-500 container mx-auto">{error}</p>}
+
+      <RatesList ratesMap={ratesMap} />
+      <Footer />
     </>
   )
 }
