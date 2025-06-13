@@ -8,3 +8,14 @@ export function isAvailableCurrency(currencyName) {
 
   return currenciesNames.includes(currencyName)
 }
+
+export function getCurrenciesMap() {
+  const newMap = new Map()
+
+  CURRENCIES.forEach(item => {
+    const [[key, value]] = Object.entries(item)
+    newMap.set(key, value)
+  })
+
+  return newMap
+}
