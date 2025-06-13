@@ -1,4 +1,4 @@
-import { CURRENCIES } from '../constants'
+import { CURRENCIES, DEFAULT_AMOUNT, DEFAULT_CURRENCY } from '../constants'
 
 export function isAvailableCurrency(currencyName) {
   const currenciesNames = CURRENCIES.map(item => {
@@ -17,14 +17,20 @@ export function getCurrenciesMap() {
     newMap.set(key, {
       name: key,
       sign: value,
+      value: DEFAULT_AMOUNT,
     })
   })
 
   return newMap
 }
 
-export function getActiveCurrency(name = 'EUR') {
+export function getActiveCurrency(name) {
   const currenciesMap = getCurrenciesMap()
 
-  return currenciesMap.get(name)
+  return currenciesMap.get(name?.toUpperCase() || DEFAULT_CURRENCY)
+}
+
+export function getRounded(value) {
+  if (!value) return
+  return Math.round(100000 * value) / 100000
 }

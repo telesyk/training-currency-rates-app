@@ -18,3 +18,5 @@ export const CURRENCIES = [
     BTC: 'BTC',
   },
 ]
+export const DEFAULT_CURRENCY = 'EUR'
+export const DEFAULT_AMOUNT = 100

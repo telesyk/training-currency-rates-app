@@ -1,10 +1,9 @@
-import { getCurrenciesMap, isAvailableCurrency } from '../utils'
+import { getCurrenciesMap, isAvailableCurrency, getRounded } from '../utils'
 
 export default function RatesList({ ratesMap, activeCurrency }) {
-  if (!ratesMap || !activeCurrency) return null
+  if (!ratesMap) return null
 
   const currenciesMap = getCurrenciesMap()
-
   const currencies = Object.entries(ratesMap).filter(([cur]) =>
     isAvailableCurrency(cur.toUpperCase())
   )
@@ -19,11 +18,14 @@ export default function RatesList({ ratesMap, activeCurrency }) {
             const currentCurrency = currenciesMap.get(cur.toUpperCase())
 
             return (
-              <tr key={cur}>
-                <th>1</th>
+              <tr key={cur} className="hover">
                 <td>{activeCurrency.name}</td>
-                <td>{rate}</td>
+                <td className="text-end">{getRounded(rate)}</td>
                 <td>{currentCurrency.name}</td>
+                <td className="text-end">
+                  {getRounded(rate * activeCurrency.value)}{' '}
+                  {currentCurrency.sign}
+                </td>
               </tr>
             )
           })}
