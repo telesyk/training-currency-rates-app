@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Footer, RatesList } from './components'
 import api from './api'
+import { getActiveCurrency } from './utils'
+
+const activeCurrency = getActiveCurrency()
+const apiUrl = api.currency(activeCurrency.name.toLowerCase())
 
 function App() {
+  const [currency, setCurrency] = useState({ ...activeCurrency, value: 1 })
   const [ratesMap, setRatesMap] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -11,7 +16,7 @@ function App() {
     setLoading(true)
     setError(null)
 
-    fetch(api.EUR)
+    fetch(apiUrl)
       .then(res => res.json())
       .then(json => {
         setRatesMap(json.eur)
@@ -41,7 +46,7 @@ function App() {
 
       {error && <p className="text-red-500 container mx-auto">{error}</p>}
 
-      <RatesList ratesMap={ratesMap} />
+      <RatesList ratesMap={ratesMap} activeCurrency={currency} />
       <Footer />
     </>
   )

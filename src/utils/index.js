@@ -14,8 +14,17 @@ export function getCurrenciesMap() {
 
   CURRENCIES.forEach(item => {
     const [[key, value]] = Object.entries(item)
-    newMap.set(key, value)
+    newMap.set(key, {
+      name: key,
+      sign: value,
+    })
   })
 
   return newMap
+}
+
+export function getActiveCurrency(name = 'EUR') {
+  const currenciesMap = getCurrenciesMap()
+
+  return currenciesMap.get(name)
 }
