@@ -12,10 +12,10 @@ export const CURRENCIES = [
     USD: '$',
   },
   {
-    ETH: 'ETH',
+    ETH: 'Ξ',
   },
   {
-    BTC: 'BTC',
+    BTC: '₿',
   },
 ]
 export const DEFAULT_CURRENCY = 'EUR'

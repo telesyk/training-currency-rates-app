@@ -4,7 +4,7 @@ import daisyuiLogo from '/daisyui.svg'
 
 export default function Footer() {
   return (
-    <footer className="container mx-auto p-4 flex gap-6 justify-center items-center border-t border-sky-900">
+    <footer className="max-w-xl mx-auto p-4 flex gap-6 justify-center items-center border-t border-sky-900">
       <a href="https://vite.dev" target="_blank">
         <img src={viteLogo} className="w-6 h-6" alt="Vite logo" />
       </a>

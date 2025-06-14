@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <div className="navbar justify-evenly bg-base-100">
+    <div className="max-w-xl mx-auto navbar justify-evenly bg-base-100">
       <div className="flex-auto">
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>

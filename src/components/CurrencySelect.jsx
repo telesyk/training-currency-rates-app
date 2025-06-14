@@ -15,7 +15,7 @@ export default function CurrencySelect({ currentCurrency, handleSelect }) {
 
   return (
     <select
-      className="select select-bordered w-full max-w-xs"
+      className="select select-ghost w-full max-w-xs"
       onChange={event => handleSelect(event.target)}
       defaultValue={currentCurrency.name}
     >

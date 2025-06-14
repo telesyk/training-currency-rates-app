@@ -6,10 +6,10 @@ import {
   Error,
   Header,
   CurrencySelect,
+  CurrencyInput,
 } from './components'
 import api from './api'
 import { getActiveCurrency } from './utils'
-import { DEFAULT_AMOUNT } from './constants'
 
 function App() {
   const [currency, setCurrency] = useState({ ...getActiveCurrency() })
@@ -41,6 +41,11 @@ function App() {
     setCurrency(prev => ({ ...currentCurrency, value: prev.value }))
   }
 
+  const handleInput = event => {
+    console.dir(event.target)
+    setCurrency(prev => ({ ...prev, value: event.target.value }))
+  }
+
   return (
     <>
       <Header />
@@ -50,15 +55,13 @@ function App() {
       {error && <Error error={error} />}
 
       {!error && !loading && (
-        <div className="container mx-auto flex flex-col gap-4 py-4">
-          <div className="flex justify-between items-center gap-4">
+        <div className="max-w-lg mx-auto flex flex-col gap-4 py-4">
+          <div className="join">
             <CurrencySelect
               currentCurrency={currency}
               handleSelect={handleSelect}
             />
-            <p>
-              {DEFAULT_AMOUNT} {currency.sign} {/* Need to add INPUT */}
-            </p>
+            <CurrencyInput value={currency.value} handleChange={handleInput} />
           </div>
           <RatesList ratesMap={ratesMap} activeCurrency={currency} />
         </div>
