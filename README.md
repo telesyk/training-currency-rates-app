@@ -1,12 +1,31 @@
-# React + Vite
+# Currency Rates App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React-based currency converter that fetches live exchange rates. Easily select your currency, enter an amount, and see up-to-date conversions for supported currencies.
 
-Currently, two official plugins are available:
+## File Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The file structure of the project is as follows:
 
-## Expanding the ESLint configuration
+```
+src/
+├── api/                # API utilities for fetching currency rates
+│   └── index.js
+├── components/         # Reusable React components
+│   ├── CurrencyInput.jsx
+│   ├── CurrencySelect.jsx
+│   ├── Error.jsx
+│   ├── Footer.jsx
+│   ├── Header.jsx
+│   ├── Loader.jsx
+│   └── RatesList.jsx
+├── utils/              # Utility functions (currency helpers, formatting, etc.)
+│   └── index.js
+├── App.jsx             # Main application component
+├── main.jsx            # Entry point for React
+└── index.css           # Global styles
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Tech-stack:
+
+`react-js`, `daisy-ui`, `tailwindcss`, `vite`
+The API was using [exchange-api](https://github.com/fawazahmed0/exchange-api#readme)
